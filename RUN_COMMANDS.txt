@@ -1,0 +1,52 @@
+========================================
+   SPROUT - COMMANDS TO RUN
+========================================
+
+STEP 1: Create environment
+    conda create -n sprout python=3.9 -y
+
+STEP 2: Activate environment
+    conda activate sprout
+
+STEP 3: Install PyTorch (CPU)
+    pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+    (For GPU instead, run: pip install torch torchvision)
+
+STEP 4: Install other packages
+    pip install numpy pandas matplotlib seaborn scikit-learn Pillow tqdm timm
+
+STEP 5: Go to project folder
+    cd C:\Users\HP\Projects\SPROUT
+
+STEP 6: Train on Cassava dataset
+    python experiments/train.py --data_dir ./data/cassava --output_dir ./results/cassava --backbone efficientnet_v2_s --n_way 5 --k_shot 5 --n_episodes 100 --num_epochs 10
+
+STEP 7: Train on Paddy dataset
+    python experiments/train.py --data_dir ./data/paddy --output_dir ./results/paddy --backbone efficientnet_v2_s --n_way 5 --k_shot 5 --n_episodes 100 --num_epochs 10
+
+STEP 8: Train on Sugarcane dataset
+    python experiments/train.py --data_dir ./data/sugarcane --output_dir ./results/sugarcane --backbone efficientnet_v2_s --n_way 5 --k_shot 5 --n_episodes 100 --num_epochs 10
+
+STEP 9: Evaluate Cassava model
+    python experiments/evaluate.py --model_path ./results/cassava/sprout_model_final.pth --data_dir ./data/cassava --output_dir ./evaluation_results/cassava --backbone efficientnet_v2_s --n_way 5 --k_shot 1 5 10 --n_episodes 100
+
+STEP 10: Evaluate Paddy model
+    python experiments/evaluate.py --model_path ./results/paddy/sprout_model_final.pth --data_dir ./data/paddy --output_dir ./evaluation_results/paddy --backbone efficientnet_v2_s --n_way 5 --k_shot 1 5 10 --n_episodes 100
+
+STEP 11: Evaluate Sugarcane model
+    python experiments/evaluate.py --model_path ./results/sugarcane/sprout_model_final.pth --data_dir ./data/sugarcane --output_dir ./evaluation_results/sugarcane --backbone efficientnet_v2_s --n_way 5 --k_shot 1 5 10 --n_episodes 100
+
+
+========================================
+   WHERE TO FIND RESULTS
+========================================
+
+Training curves   : ./results/<dataset>/training_curves.png
+Trained model     : ./results/<dataset>/sprout_model_final.pth
+Evaluation plots  : ./evaluation_results/<dataset>/
+  - shot_comparison_5way.png
+  - visualizations/embedding_space_5way_5shot.png
+  - visualizations/confusion_matrix_5way_5shot.png
+  - visualizations/distance_heatmap_5way_5shot.png
+  - shot_results.txt

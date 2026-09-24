@@ -1,0 +1,91 @@
+=====================================================
+   SPROUT - HOW TO RUN (Step by Step)
+=====================================================
+
+METHOD 1: Using Anaconda Prompt (RECOMMENDED)
+----------------------------------------------
+
+Step 1: Open Anaconda Prompt
+   - Open Anaconda Navigator
+   - Click "Launch" under Terminal (or search "Anaconda Prompt")
+
+Step 2: Create a new environment
+   Run this command:
+   
+   conda create -n sprout python=3.9 -y
+
+Step 3: Activate the environment
+   Run this command:
+   
+   conda activate sprout
+
+Step 4: Install PyTorch (CPU version - works on any PC)
+   Run this command:
+   
+   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+Step 5: Install other packages
+   Run this command:
+   
+   pip install numpy pandas matplotlib seaborn scikit-learn Pillow tqdm timm
+
+Step 6: Go to SPROUT folder
+   Run this command:
+   
+   cd C:\Users\HP\SPROUT-main
+
+Step 7: Start Training!
+   Run this command:
+   
+   python experiments/train.py --data_dir ./data/plantvillage --output_dir ./results --backbone efficientnet_v2_s --n_way 5 --k_shot 5 --n_episodes 100 --num_epochs 10
+
+
+=====================================================
+   WHAT EACH PARAMETER MEANS
+=====================================================
+
+--data_dir     : Path to your plantvillage dataset
+--output_dir   : Where to save the trained model
+--backbone     : CNN model to use (efficientnet_v2_s)
+--n_way        : Number of disease classes per episode (5)
+--k_shot       : Number of images per class for training (5)
+--n_episodes   : Number of training episodes per epoch (100)
+--num_epochs   : Number of times to train on all data (10)
+
+
+=====================================================
+   WHERE ARE MY FILES?
+=====================================================
+
+SPROUT Code      : C:\Users\HP\SPROUT-main\
+Dataset          : C:\Users\HP\SPROUT-main\data\plantvillage\
+Trained Model    : C:\Users\HP\SPROUT-main\results\
+Training Plots   : C:\Users\HP\SPROUT-main\results\training_curves.png
+
+
+=====================================================
+   EXPECTED TRAINING TIME
+=====================================================
+
+- CPU only: 2-4 hours
+- With GPU: 30-60 minutes
+
+You will see progress like:
+  Epoch 1/10
+  Training: 100%|██████████| 100/100
+  Epoch 1 - Accuracy: 0.6543, Loss: 2.3456
+
+
+=====================================================
+   TROUBLESHOOTING
+=====================================================
+
+Problem: "python" is not recognized
+Solution: Make sure you activated the environment:
+          conda activate sprout
+
+Problem: Out of memory
+Solution: Reduce batch size or use smaller images
+
+Problem: Training is slow
+Solution: This is normal for CPU. Be patient!
